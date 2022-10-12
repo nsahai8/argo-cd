@@ -49,7 +49,7 @@ func (g *GiteaService) List(ctx context.Context) ([]*PullRequest, error) {
 	}
 	prs, _, err := g.client.ListRepoPullRequests(g.owner, g.repo, opts)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error creating a new git client: %w", err)
 	}
 	list := []*PullRequest{}
 	for _, pr := range prs {
